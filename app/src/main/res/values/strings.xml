@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">CryptoCoin</string>
+    <string name="priceUsd">%1$s$</string>
+    <string name="priceBtc">%1$s BTC</string>
+    <string name="supply">%1$s %2$s</string>
+    <string name="percentChangeMinus">%.2f%%</string>
+    <string name="percentChangePlus">+%.2f%%</string>
+
+    <string name="detailPriceUSD">"Price USD : "</string>
+    <string name="detailPriceBTC">"Price BTC : "</string>
+    <string name="detailVolume">"24 Hour Volume USD : "</string>
+    <string name="detailMarketCap">"Market Cap USD : "</string>
+    <string name="detailAvailableSupply">"Available Supply : "</string>
+    <string name="detailTotalSupply">"Total Supply : "</string>
+    <string name="detailChangeHour">"Change 1h : "</string>
+    <string name="detailChangeDay">"Change 24h : "</string>
+    <string name="detailChangeWeek">"Change 7d : "</string>
+    <string name="detailSources">View sources"</string>
+
+    <string name="aboutPage">About</string>
+    <string name="aboutVersionTitle">Version: 1.0</string>
+    <string name="aboutVersionDescription">CryptoCoin — cryptocurrency market in your pocket!</string>
+    <string name="aboutFeedbackTitle">Send feedback</string>
+    <string name="aboutFeedbackDescription">Suggest ideas or tell about bugs</string>
+    <string name="aboutRateTitle">Rate this app</string>
+    <string name="aboutRateDescription">Rate this app on Google Play Store</string>
+    <string name="aboutGitHubTitle">Visit GitHub page</string>
+    <string name="aboutGitHubDescription">Visit the project page on GitHub with source code</string>
+    <string name="aboutLibrariesTitle">Used libraries</string>
+
+    <string name="feedbackTitle">CryptoCoin — Feedback</string>
+    <string name="feedbackDeviceInfo">"My device info: "</string>
+    <string name="feedbackAppVersion">"App version: "</string>
+    <string name="feedback">"Feedback: "</string>
+
+    <string name="retrofitTitle">square / retrofit</string>
+    <string name="retrofitDescription">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="kotterKnifeTitle">JakeWharton / kotterknife</string>
+    <string name="kotterKnifeDescription">View injection library for Android.</string>
+    <string name="shapeOfViewTitle">florent37 / ShapeOfView</string>
+    <string name="shapeOfViewDescription">Give a custom shape to any android view, Material Design 2 ready</string>
+    <string name="materialSearchViewTitle">MiguelCatalan / MaterialSearchView</string>
+    <string name="materialSearchViewDescription">Cute library to implement SearchView in a Material Design Approach</string>
+
+    <string name="menuSort">Sort</string>
+    <string name="menuAbout">About</string>
+
+    <string name="searchTitle">Search</string>
+    <string name="menuTitle">Menu</string>
+
+    <string name="itemHour">"1h: "</string>
+    <string name="itemDay">"24h: "</string>
+    <string name="itemWeek">"7d: "</string>
+
+    <string name="internetError">Error loading data! \nPlease check your internet \nconnection.</string>
+    <string name="sortToast">"Sorting by: "</string>
+
+    <string name="dialogTitle">Sort by:</string>
+    <string-array name="sortBy">
+        <item>Price High to Low</item>
+        <item>Price Low to High</item>
+        <item>Change 1h High to Low</item>
+        <item>Change 1h Low to High</item>
+        <item>Change 24h High to Low</item>
+        <item>Change 24h Low to High</item>
+        <item>Change 7d High to Low</item>
+        <item>Change 7d Low to High</item>
+        <item>Market Cap High to Low</item>
+        <item>Market Cap Low to High</item>
+    </string-array>
+</resources>

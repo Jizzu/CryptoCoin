@@ -1,0 +1,4 @@
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-dontwarn okhttp3.internal.platform.*
+-dontwarn retrofit2.Platform$Java8

@@ -1,0 +1,61 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="MaterialSearchViewStyle">
+        <item name="android:hint">@string/searchTitle</item>
+        <item name="searchBackground">@color/colorAccent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="searchSuggestionBackground">@android:color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="searchBackIcon">@drawable/ic_arrow_back_white_24dp</item>
+        <item name="searchCloseIcon">@drawable/ic_close_white_24dp</item>
+    </style>
+
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:background">@color/lightBackground</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="textColorAlertDialogListItem">@color/white</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
+    <style name="CustomMenuStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorBackground">@color/lightBackground</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AboutLibraryStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="AboutTitleTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AboutSubtitleTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+</resources>

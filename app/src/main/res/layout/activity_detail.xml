@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkBackground"
+    tools:context=".view.detail.DetailActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/horGuideStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="230dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/horGuideEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="80dp" />
+
+    <com.github.florent37.shapeofview.shapes.ArcView
+        android:id="@+id/arcView"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/gradient"
+        android:elevation="8dp"
+        app:shape_arc_cropDirection="outside"
+        app:shape_arc_height="40dp"
+        app:shape_arc_position="bottom">
+
+        <ImageButton
+            android:id="@+id/ibBackArrow"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@null"
+            android:src="@drawable/ic_arrow_back_white_24dp"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvSymbol"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_coin_symbol"
+            android:elevation="8dp"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:autoSizeMinTextSize="8dp"
+            app:autoSizeTextType="uniform"
+            tools:ignore="MissingPrefix"
+            tools:text="BTC" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:layout_weight="35"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tvSymbol"
+            tools:text="Bitcoin" />
+
+    </com.github.florent37.shapeofview.shapes.ArcView>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/horGuideEnd"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horGuideStart">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/vertGuideStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/vertGuideEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <TextView
+                android:id="@+id/tvPriceUSD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/detailPriceUSD"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/vertGuideStart" />
+
+            <TextView
+                android:id="@+id/tvPriceUSDValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="15sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvPriceUSD"
+                app:layout_constraintEnd_toStartOf="@+id/vertGuideEnd"
+                tools:text="10000$" />
+
+            <TextView
+                android:id="@+id/tvPriceBTC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/detailPriceBTC"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/vertGuideStart"
+                app:layout_constraintTop_toBottomOf="@id/tvPriceUSD" />
+
+            <TextView
+                android:id="@+id/tvPriceBTCValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="15sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvPriceBTC"
+                app:layout_constraintEnd_toStartOf="@+id/vertGuideEnd"
+                app:layout_constraintTop_toBottomOf="@id/tvPriceUSDValue"
+                tools:text="10000$" />
+
+            <TextView
+                android:id="@+id/tv24hVolumeUSD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/detailVolume"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/vertGuideStart"
+                app:layout_constraintTop_toBottomOf="@id/tvPriceBTC" />
+
+            <TextView
+                android:id="@+id/tv24hVolumeUSDValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="15sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv24hVolumeUSD"
+                app:layout_constraintEnd_toStartOf="@+id/vertGuideEnd"
+                app:layout_constraintTop_toBottomOf="@id/tvPriceBTCValue"
+                tools:text="10000$" />
+
+            <TextView
+                android:id="@+id/tvMarketCapUSD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/detailMarketCap"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/vertGuideStart"
+                app:layout_constraintTop_toBottomOf="@id/tv24hVolumeUSD" />
+
+            <TextView
+                android:id="@+id/tvMarketCapUSDValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="15sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvMarketCapUSD"
+                app:layout_constraintEnd_toStartOf="@+id/vertGuideEnd"
+                app:layout_constraintTop_toBottomOf="@id/tv24hVolumeUSDValue"
+                tools:text="10000$" />
+
+            <TextView
+                android:id="@+id/tvAvailableSupply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/detailAvailableSupply"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/vertGuideStart"
+                app:layout_constraintTop_toBottomOf="@id/tvMarketCapUSD" />
+
+            <TextView
+                android:id="@+id/tvAvailableSupplyValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="15sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvAvailableSupply"
+                app:layout_constraintEnd_toStartOf="@+id/vertGuideEnd"
+                app:layout_constraintTop_toBottomOf="@id/tvMarketCapUSDValue"
+                tools:text="10000$" />
+
+            <TextView
+                android:id="@+id/tvTotalSupply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/detailTotalSupply"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/vertGuideStart"
+                app:layout_constraintTop_toBottomOf="@id/tvAvailableSupply" />
+
+            <TextView
+                android:id="@+id/tvTotalSupplyValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="15sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvTotalSupply"
+                app:layout_constraintEnd_toStartOf="@+id/vertGuideEnd"
+                app:layout_constraintTop_toBottomOf="@id/tvAvailableSupplyValue"
+                tools:text="10000$" />
+
+            <TextView
+                android:id="@+id/tvHourlyPercentChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/detailChangeHour"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/vertGuideStart"
+                app:layout_constraintTop_toBottomOf="@id/tvTotalSupply" />
+
+            <TextView
+                android:id="@+id/tvHourlyPercentChangeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvHourlyPercentChange"
+                app:layout_constraintEnd_toStartOf="@+id/vertGuideEnd"
+                app:layout_constraintTop_toBottomOf="@id/tvTotalSupplyValue"
+                tools:text="10000$" />
+
+            <TextView
+                android:id="@+id/tvDailyPercentChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/detailChangeDay"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/vertGuideStart"
+                app:layout_constraintTop_toBottomOf="@id/tvHourlyPercentChange" />
+
+            <TextView
+                android:id="@+id/tvDailyPercentChangeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvDailyPercentChange"
+                app:layout_constraintEnd_toStartOf="@+id/vertGuideEnd"
+                app:layout_constraintTop_toBottomOf="@id/tvHourlyPercentChangeValue"
+                tools:text="10000$" />
+
+            <TextView
+                android:id="@+id/tvWeeklyPercentChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/detailChangeWeek"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/vertGuideStart"
+                app:layout_constraintTop_toBottomOf="@id/tvDailyPercentChange" />
+
+            <TextView
+                android:id="@+id/tvWeeklyPercentChangeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvWeeklyPercentChange"
+                app:layout_constraintEnd_toStartOf="@+id/vertGuideEnd"
+                app:layout_constraintTop_toBottomOf="@id/tvDailyPercentChangeValue"
+                tools:text="10000$" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/bSourceLink"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_rounded_button"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/detailSources"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
