@@ -1,4 +1,4 @@
-package apps.jizzu.cryptocoin.adapter
+package apps.jizzu.cryptocoin.screens.main.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -13,15 +13,13 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import apps.jizzu.cryptocoin.R
-import apps.jizzu.cryptocoin.model.Coin
-import apps.jizzu.cryptocoin.view.detail.DetailActivity
+import apps.jizzu.cryptocoin.data.Coin
+import apps.jizzu.cryptocoin.screens.details.DetailsActivity
 import kotterknife.bindView
 import java.text.DecimalFormat
 import java.util.*
 
-
 class CoinsAdapter : RecyclerView.Adapter<CoinsAdapter.CoinViewHolder>() {
-
     private var mCoins = ArrayList<Coin>()
     private lateinit var mContext: Context
     private var mLastPosition = -1
@@ -49,26 +47,24 @@ class CoinsAdapter : RecyclerView.Adapter<CoinsAdapter.CoinViewHolder>() {
 
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
         holder.bind(mCoins[position])
-
         val coin = mCoins[position]
-
         val itemView = holder.itemView
+
         itemView.setOnClickListener {
-            val intent = Intent(mContext, DetailActivity::class.java)
-
-            intent.putExtra("symbol", coin.symbol)
-            intent.putExtra("name", coin.name)
-            intent.putExtra("id", coin.id)
-            intent.putExtra("price_usd", coin.priceUSD)
-            intent.putExtra("price_btc", coin.priceBitcoin)
-            intent.putExtra("24h_volume_usd", coin.volumeUSD)
-            intent.putExtra("market_cap_usd", coin.marketCapUSD)
-            intent.putExtra("available_supply", coin.availableSupply)
-            intent.putExtra("total_supply", coin.totalSupply)
-            intent.putExtra("percent_change_1h", coin.percentChangeHour)
-            intent.putExtra("percent_change_24h", coin.percentChangeDay)
-            intent.putExtra("percent_change_7d", coin.percentChangeWeek)
-
+            val intent = Intent(mContext, DetailsActivity::class.java).apply {
+                putExtra("symbol", coin.symbol)
+                putExtra("name", coin.name)
+                putExtra("id", coin.id)
+                putExtra("price_usd", coin.priceUSD)
+                putExtra("price_btc", coin.priceBitcoin)
+                putExtra("24h_volume_usd", coin.volumeUSD)
+                putExtra("market_cap_usd", coin.marketCapUSD)
+                putExtra("available_supply", coin.availableSupply)
+                putExtra("total_supply", coin.totalSupply)
+                putExtra("percent_change_1h", coin.percentChangeHour)
+                putExtra("percent_change_24h", coin.percentChangeDay)
+                putExtra("percent_change_7d", coin.percentChangeWeek)
+            }
             mContext.startActivity(intent)
         }
 
@@ -88,10 +84,11 @@ class CoinsAdapter : RecyclerView.Adapter<CoinsAdapter.CoinViewHolder>() {
         }
 
         val animation = AnimationUtils.loadAnimation(mContext,
-                if (position > mLastPosition)
+                if (position > mLastPosition) {
                     R.anim.up_from_bottom
-                else
-                    R.anim.down_from_top)
+                } else {
+                    R.anim.down_from_top
+                })
         holder.itemView.startAnimation(animation)
         mLastPosition = position
     }
@@ -104,9 +101,8 @@ class CoinsAdapter : RecyclerView.Adapter<CoinsAdapter.CoinViewHolder>() {
     }
 
     class CoinViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         private val symbol: TextView by bindView(R.id.tvSymbol)
-        private val name: TextView  by bindView(R.id.tvName)
+        private val name: TextView by bindView(R.id.tvName)
         private val price: TextView  by bindView(R.id.tvPrice)
 
         val hourlyText: TextView  by bindView(R.id.tvHourlyText)

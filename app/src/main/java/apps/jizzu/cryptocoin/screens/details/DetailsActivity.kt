@@ -1,7 +1,8 @@
-package apps.jizzu.cryptocoin.view.detail
+package apps.jizzu.cryptocoin.screens.details
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -9,25 +10,32 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
 import apps.jizzu.cryptocoin.R
-import apps.jizzu.cryptocoin.presenter.DetailPresenter
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.text.DecimalFormat
 import java.util.*
 
-class DetailActivity : AppCompatActivity(), DetailView {
-
-    private val mPresenter = DetailPresenter()
+class DetailsActivity : AppCompatActivity(), DetailsContract.View {
+    private val mPresenter = DetailsPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        initUI()
+        checkLocale()
+        initListeners()
+    }
 
-        val intent = intent
+    private fun initUI() {
+        window.apply {
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = ContextCompat.getColor(this@DetailsActivity, android.R.color.transparent)
+            navigationBarColor = ContextCompat.getColor(this@DetailsActivity, android.R.color.transparent)
+            setBackgroundDrawable(ContextCompat.getDrawable(this@DetailsActivity, R.drawable.gradient))
+        }
+
         val decimalFormat = DecimalFormat("#,###.##########")
-
         val symbol = intent.getStringExtra("symbol")
         val name = intent.getStringExtra("name")
-        val id = intent.getStringExtra("id")
         val priceUSD = intent.getDoubleExtra("price_usd", 0.0)
         val priceBitcoin = intent.getDoubleExtra("price_btc", 0.0)
         val volumeUSD = intent.getDoubleExtra("24h_volume_usd", 0.0)
@@ -37,14 +45,6 @@ class DetailActivity : AppCompatActivity(), DetailView {
         val percentChangeHour = intent.getDoubleExtra("percent_change_1h", 0.0)
         val percentChangeDay = intent.getDoubleExtra("percent_change_24h", 0.0)
         val percentChangeWeek = intent.getDoubleExtra("percent_change_7d", 0.0)
-
-        val background = ContextCompat.getDrawable(this, R.drawable.gradient)
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
-        window.navigationBarColor = ContextCompat.getColor(this, android.R.color.transparent)
-        window.setBackgroundDrawable(background)
-
-        mPresenter.attachView(this)
 
         tvSymbol.text = symbol
         tvName.text = name
@@ -78,27 +78,29 @@ class DetailActivity : AppCompatActivity(), DetailView {
             tvWeeklyPercentChangeValue.text = getString(R.string.percentChangeMinus, percentChangeWeek)
             tvWeeklyPercentChangeValue.setTextColor(ContextCompat.getColor(this, R.color.red))
         }
+    }
 
-        checkLocale()
-
+    private fun initListeners() {
         ibBackArrow.setOnClickListener {
             onBackPressed()
         }
 
         bSourceLink.setOnClickListener {
-            mPresenter.openSiteLink("https://coinmarketcap.com/ru/currencies/$id")
+            openLink("https://coinmarketcap.com/ru/currencies/${intent.getStringExtra("id")}")
         }
     }
 
+    private fun openLink(link: String) = startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(link)))
+
     private fun checkLocale() {
         val language = Locale.getDefault().displayLanguage.toString()
-        Log.d("DetailActivity", "Current Language: $language")
+        Log.d("DetailsActivity", "Current Language: $language")
 
         val displayMetrics = DisplayMetrics()
         (this.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay.getMetrics(displayMetrics)
         val width = displayMetrics.widthPixels
         val height = displayMetrics.heightPixels
-        Log.d("DetailActivity", "width = $width, height = $height")
+        Log.d("DetailsActivity", "width = $width, height = $height")
 
         if (language == "русский" && (width < 720 || height < 1184)) {
             tvPriceUSD.textSize = 15.5f
@@ -123,7 +125,13 @@ class DetailActivity : AppCompatActivity(), DetailView {
         }
     }
 
-    override fun openSiteLink(intent: Intent) {
-        startActivity(intent)
+    override fun onResume() {
+        super.onResume()
+        mPresenter.takeView(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.dropView()
     }
 }

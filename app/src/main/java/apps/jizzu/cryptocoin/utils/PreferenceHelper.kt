@@ -13,27 +13,23 @@ class PreferenceHelper private constructor() {
     }
 
     fun putInt(key: String, value: Int) {
-        val editor = mPreferences.edit()
-        editor.putInt(key, value)
-        editor.apply()
+        mPreferences.edit().apply {
+            putInt(key, value)
+            apply()
+        }
     }
 
-    fun getInt(key: String): Int {
-        return mPreferences.getInt(key, 0)
-    }
+    fun getInt(key: String) = mPreferences.getInt(key, 0)
 
     companion object {
-
         const val ITEM_POSITION = "item_position"
-
         private var mInstance: PreferenceHelper? = null
 
-        val instance: PreferenceHelper
-            get() {
-                if (mInstance == null) {
-                    mInstance = PreferenceHelper()
-                }
-                return mInstance as PreferenceHelper
+        fun getInstance(): PreferenceHelper {
+            if (mInstance == null) {
+                mInstance = PreferenceHelper()
             }
+            return mInstance as PreferenceHelper
+        }
     }
 }

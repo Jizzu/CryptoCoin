@@ -1,4 +1,4 @@
-package apps.jizzu.cryptocoin.model
+package apps.jizzu.cryptocoin.data
 
 import com.google.gson.annotations.SerializedName
 

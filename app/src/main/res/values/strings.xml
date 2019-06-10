@@ -53,7 +53,8 @@
     <string name="itemWeek">"7d: "</string>
 
     <string name="internetError">Error loading data! \nPlease check your internet \nconnection.</string>
-    <string name="sortToast">"Sorting by: "</string>
+    <string name="sortToast">"Sorting by: %1$s"</string>
+    <string name="noEmailAppsError">There are no email clients installed!</string>
 
     <string name="dialogTitle">Sort by:</string>
     <string-array name="sortBy">

@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.home.HomeActivity"
+            android:name="apps.jizzu.cryptocoin.screens.main.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>
@@ -21,10 +21,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.detail.DetailActivity"
+            android:name=".screens.details.DetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.about.AboutActivity"
+            android:name=".screens.about.AboutActivity"
             android:screenOrientation="portrait" />
     </application>
 

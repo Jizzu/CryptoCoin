@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkBackground"
-    tools:context=".view.detail.DetailActivity">
+    tools:context=".screens.details.DetailsActivity">
 
     <android.support.constraint.Guideline
         android:id="@+id/horGuideStart"

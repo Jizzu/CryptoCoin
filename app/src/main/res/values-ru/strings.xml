@@ -53,7 +53,8 @@
     <string name="itemWeek">"7д: "</string>
 
     <string name="internetError">Ошибка загрузки данных! \nПроверьте ваше соединение с \nинтернетом.</string>
-    <string name="sortToast">Сортировка по:</string>
+    <string name="sortToast">Сортировка по: %1$s</string>
+    <string name="noEmailAppsError">Приложения для электронной почты не установлены!</string>
 
     <string name="dialogTitle">Сортировать по:</string>
     <string-array name="sortBy">
