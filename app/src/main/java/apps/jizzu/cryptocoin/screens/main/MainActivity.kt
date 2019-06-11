@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, SwipeRefreshLayout.
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var selectedItemPosition = mPreferenceHelper.getInt(PreferenceHelper.ITEM_POSITION)
+        var selectedItemPosition = mPreferenceHelper.getInt(PreferenceHelper.SORT_KEY)
 
         when (item.itemId) {
             R.id.actionAbout -> startActivity(Intent(this, AboutActivity::class.java))
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, SwipeRefreshLayout.
                     setSingleChoiceItems(listItems, selectedItemPosition) { dialogInterface, i ->
                         mPresenter.sortData(i)
                         selectedItemPosition = i
-                        mPreferenceHelper.putInt(PreferenceHelper.ITEM_POSITION, i)
+                        mPreferenceHelper.putInt(PreferenceHelper.SORT_KEY, i)
                         toast(getString(R.string.sortToast, listItems[i]))
                         dialogInterface.dismiss()
                     }

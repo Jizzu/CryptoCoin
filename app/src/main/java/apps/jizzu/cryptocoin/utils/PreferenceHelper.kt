@@ -22,7 +22,7 @@ class PreferenceHelper private constructor() {
     fun getInt(key: String) = mPreferences.getInt(key, 0)
 
     companion object {
-        const val ITEM_POSITION = "item_position"
+        const val SORT_KEY = "sort_key"
         private var mInstance: PreferenceHelper? = null
 
         fun getInstance(): PreferenceHelper {

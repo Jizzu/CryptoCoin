@@ -25,7 +25,7 @@ class CoinsAdapter : RecyclerView.Adapter<CoinsAdapter.CoinViewHolder>() {
     private var mLastPosition = -1
 
     fun setCoins(coins: ArrayList<Coin>) {
-        this.mCoins = coins
+        mCoins = coins
         notifyDataSetChanged()
     }
 

@@ -3,28 +3,25 @@ package apps.jizzu.cryptocoin.screens.main
 import apps.jizzu.cryptocoin.data.Coin
 import apps.jizzu.cryptocoin.network.ApiClient
 import apps.jizzu.cryptocoin.utils.PreferenceHelper
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 
 class MainModel : MainContract.Model {
     var mData = arrayListOf<Coin>()
 
     override fun loadData(callback: LoadDataCallback) {
-        ApiClient.client.getData().enqueue(object : Callback<ArrayList<Coin>> {
-            override fun onResponse(call: Call<ArrayList<Coin>>, response: Response<ArrayList<Coin>>) {
-                val coins = response.body()
-                val selectedItemPosition = PreferenceHelper.getInstance().getInt(PreferenceHelper.ITEM_POSITION)
-
-                if (coins != null) {
-                    mData = coins
-                }
-                sortData(selectedItemPosition, null)
-                callback.onLoad(coins as ArrayList<Coin>)
-            }
-
-            override fun onFailure(call: Call<ArrayList<Coin>>, t: Throwable) = callback.onFailure()
-        })
+        ApiClient.client.getData()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onSuccess = {
+                            mData = it
+                            sortData(PreferenceHelper.getInstance().getInt(PreferenceHelper.SORT_KEY), null)
+                            callback.onLoad(mData)
+                        },
+                        onError = { callback.onFailure() }
+                )
     }
 
     override fun searchData(text: String): ArrayList<Coin> {
