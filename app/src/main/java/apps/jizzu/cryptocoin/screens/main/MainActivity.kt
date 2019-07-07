@@ -20,6 +20,7 @@ import apps.jizzu.cryptocoin.di.App
 import apps.jizzu.cryptocoin.screens.main.adapter.CoinsAdapter
 import apps.jizzu.cryptocoin.utils.*
 import apps.jizzu.cryptocoin.screens.about.AboutActivity
+import apps.jizzu.cryptocoin.screens.details.DetailsActivity
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotterknife.bindView
@@ -77,6 +78,28 @@ class MainActivity : AppCompatActivity(), MainContract.View, SwipeRefreshLayout.
                 return false
             }
         })
+
+        mAdapter.setOnItemClickListener(object : CoinsAdapter.OnAdapterClickListener {
+            override fun onItemClick(position: Int) = showDetailsActivity(mAdapter.getCoinAtPosition(position))
+        })
+    }
+
+    private fun showDetailsActivity(coin: Coin) {
+        val intent = Intent(this, DetailsActivity::class.java).apply {
+            putExtra("symbol", coin.symbol)
+            putExtra("name", coin.name)
+            putExtra("id", coin.id)
+            putExtra("price_usd", coin.priceUSD)
+            putExtra("price_btc", coin.priceBitcoin)
+            putExtra("24h_volume_usd", coin.volumeUSD)
+            putExtra("market_cap_usd", coin.marketCapUSD)
+            putExtra("available_supply", coin.availableSupply)
+            putExtra("total_supply", coin.totalSupply)
+            putExtra("percent_change_1h", coin.percentChangeHour)
+            putExtra("percent_change_24h", coin.percentChangeDay)
+            putExtra("percent_change_7d", coin.percentChangeWeek)
+        }
+        startActivity(intent)
     }
 
     override fun onRefresh() = mPresenter.loadCoinsList()

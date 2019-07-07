@@ -1,7 +1,6 @@
 package apps.jizzu.cryptocoin.screens.main.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.util.DisplayMetrics
@@ -14,7 +13,6 @@ import android.view.animation.AnimationUtils
 import android.widget.TextView
 import apps.jizzu.cryptocoin.R
 import apps.jizzu.cryptocoin.data.Coin
-import apps.jizzu.cryptocoin.screens.details.DetailsActivity
 import kotterknife.bindView
 import java.text.DecimalFormat
 import java.util.*
@@ -40,6 +38,8 @@ class CoinsAdapter : RecyclerView.Adapter<CoinsAdapter.CoinViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun getCoinAtPosition(position: Int) = mCoins[position]
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
         mContext = parent.context
         return CoinViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_coin, parent, false))
@@ -47,26 +47,12 @@ class CoinsAdapter : RecyclerView.Adapter<CoinsAdapter.CoinViewHolder>() {
 
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
         holder.bind(mCoins[position])
-        val coin = mCoins[position]
         val itemView = holder.itemView
 
         itemView.setOnClickListener {
-            val intent = Intent(mContext, DetailsActivity::class.java).apply {
-                putExtra("symbol", coin.symbol)
-                putExtra("name", coin.name)
-                putExtra("id", coin.id)
-                putExtra("price_usd", coin.priceUSD)
-                putExtra("price_btc", coin.priceBitcoin)
-                putExtra("24h_volume_usd", coin.volumeUSD)
-                putExtra("market_cap_usd", coin.marketCapUSD)
-                putExtra("available_supply", coin.availableSupply)
-                putExtra("total_supply", coin.totalSupply)
-                putExtra("percent_change_1h", coin.percentChangeHour)
-                putExtra("percent_change_24h", coin.percentChangeDay)
-                putExtra("percent_change_7d", coin.percentChangeWeek)
-            }
-            mContext.startActivity(intent)
+            onAdapterClickListener?.onItemClick(position)
         }
+
 
         val displayMetrics = DisplayMetrics()
         (mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay.getMetrics(displayMetrics)
@@ -143,5 +129,17 @@ class CoinsAdapter : RecyclerView.Adapter<CoinsAdapter.CoinViewHolder>() {
                 percentChangeWeek.setTextColor(ContextCompat.getColor(context, R.color.red))
             }
         }
+    }
+
+    fun setOnItemClickListener(onAdapterClickListener: OnAdapterClickListener) {
+        CoinsAdapter.onAdapterClickListener = onAdapterClickListener
+    }
+
+    interface OnAdapterClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    companion object {
+        private var onAdapterClickListener: OnAdapterClickListener? = null
     }
 }
