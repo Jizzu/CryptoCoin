@@ -9,16 +9,18 @@ import android.view.MenuItem
 import android.view.WindowManager
 import apps.jizzu.cryptocoin.BuildConfig
 import apps.jizzu.cryptocoin.R
-import apps.jizzu.cryptocoin.utils.DeviceInfo
-import apps.jizzu.cryptocoin.utils.toast
+import apps.jizzu.cryptocoin.di.App
+import apps.jizzu.cryptocoin.utils.*
 import kotlinx.android.synthetic.main.activity_about.*
+import javax.inject.Inject
 
 class AboutActivity : AppCompatActivity(), AboutContract.View {
-    private val mPresenter = AboutPresenter()
+    @Inject lateinit var mPresenter: AboutPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
+        App.getApp(this).getAppComponent().createScreensComponent().inject(this)
         initUI()
         initListeners()
     }
@@ -109,13 +111,5 @@ class AboutActivity : AppCompatActivity(), AboutContract.View {
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.dropView()
-    }
-
-    private companion object {
-        private const val GIT_HUB_PAGE = "https://github.com/Jizzu/CryptoCoin"
-        private const val RETROFIT_PAGE = "https://github.com/square/retrofit"
-        private const val KOTTER_KNIFE_PAGE = "https://github.com/JakeWharton/kotterknife"
-        private const val SHAPE_OF_VIEW_PAGE = "https://github.com/florent37/ShapeOfView"
-        private const val MATERIAL_SEARCH_VIEW_PAGE = "https://github.com/MiguelCatalan/MaterialSearchView"
     }
 }

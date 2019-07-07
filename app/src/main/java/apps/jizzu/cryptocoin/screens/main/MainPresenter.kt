@@ -1,11 +1,11 @@
 package apps.jizzu.cryptocoin.screens.main
 
 import apps.jizzu.cryptocoin.data.Coin
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-class MainPresenter: MainContract.Presenter {
+class MainPresenter @Inject constructor(private val mModel: MainModel): MainContract.Presenter {
     private var mView: MainContract.View? = null
-    private val mModel = MainModel()
 
     override fun loadCoinsList() {
         mModel.loadData(object : MainModel.LoadDataCallback {

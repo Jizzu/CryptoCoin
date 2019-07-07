@@ -16,12 +16,14 @@ import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
 import apps.jizzu.cryptocoin.R
 import apps.jizzu.cryptocoin.data.Coin
+import apps.jizzu.cryptocoin.di.App
 import apps.jizzu.cryptocoin.screens.main.adapter.CoinsAdapter
 import apps.jizzu.cryptocoin.utils.*
 import apps.jizzu.cryptocoin.screens.about.AboutActivity
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotterknife.bindView
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainContract.View, SwipeRefreshLayout.OnRefreshListener {
     private val mRecyclerView: RecyclerView by bindView(R.id.rvCoinsList)
@@ -30,16 +32,16 @@ class MainActivity : AppCompatActivity(), MainContract.View, SwipeRefreshLayout.
     private val mToolbar: Toolbar by bindView(R.id.toolbar)
     private val mSearchView: MaterialSearchView by bindView(R.id.searchView)
 
-    private val mAdapter = CoinsAdapter()
-    private val mPresenter = MainPresenter()
-    private val mPreferenceHelper = PreferenceHelper.getInstance()
+    @Inject lateinit var mAdapter: CoinsAdapter
+    @Inject lateinit var mPresenter: MainPresenter
+    @Inject lateinit var mPreferenceHelper: PreferenceHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        App.getApp(this).getAppComponent().createScreensComponent().inject(this)
         initUI()
         initListeners()
-        mPreferenceHelper.init(applicationContext)
         mPresenter.loadCoinsList()
     }
 

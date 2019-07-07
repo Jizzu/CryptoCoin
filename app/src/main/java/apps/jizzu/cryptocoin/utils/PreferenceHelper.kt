@@ -1,16 +1,9 @@
 package apps.jizzu.cryptocoin.utils
 
-import android.content.Context
 import android.content.SharedPreferences
+import javax.inject.Inject
 
-class PreferenceHelper private constructor() {
-    private lateinit var mContext: Context
-    private lateinit var mPreferences: SharedPreferences
-
-    fun init(context: Context) {
-        mContext = context
-        mPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
-    }
+class PreferenceHelper @Inject constructor(private val mPreferences: SharedPreferences) {
 
     fun putInt(key: String, value: Int) {
         mPreferences.edit().apply {
@@ -23,13 +16,5 @@ class PreferenceHelper private constructor() {
 
     companion object {
         const val SORT_KEY = "sort_key"
-        private var mInstance: PreferenceHelper? = null
-
-        fun getInstance(): PreferenceHelper {
-            if (mInstance == null) {
-                mInstance = PreferenceHelper()
-            }
-            return mInstance as PreferenceHelper
-        }
     }
 }

@@ -10,16 +10,19 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
 import apps.jizzu.cryptocoin.R
+import apps.jizzu.cryptocoin.di.App
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.text.DecimalFormat
 import java.util.*
+import javax.inject.Inject
 
 class DetailsActivity : AppCompatActivity(), DetailsContract.View {
-    private val mPresenter = DetailsPresenter()
+    @Inject lateinit var mPresenter: DetailsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        App.getApp(this).getAppComponent().createScreensComponent().inject(this)
         initUI()
         checkLocale()
         initListeners()

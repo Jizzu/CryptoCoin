@@ -1,23 +1,25 @@
 package apps.jizzu.cryptocoin.screens.main
 
 import apps.jizzu.cryptocoin.data.Coin
-import apps.jizzu.cryptocoin.network.ApiClient
+import apps.jizzu.cryptocoin.network.Api
 import apps.jizzu.cryptocoin.utils.PreferenceHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class MainModel : MainContract.Model {
+class MainModel @Inject constructor(private val client: Api,
+                                    private val preferenceHelper: PreferenceHelper) : MainContract.Model {
     var mData = arrayListOf<Coin>()
 
     override fun loadData(callback: LoadDataCallback) {
-        ApiClient.client.getData()
+        client.getData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onSuccess = {
                             mData = it
-                            sortData(PreferenceHelper.getInstance().getInt(PreferenceHelper.SORT_KEY), null)
+                            sortData(preferenceHelper.getInt(PreferenceHelper.SORT_KEY), null)
                             callback.onLoad(mData)
                         },
                         onError = { callback.onFailure() }
