@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "apps.jizzu.cryptocoin"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // UI
+    implementation "com.android.support:appcompat-v7:$rootProject.appcompatVersion"
+    implementation "com.android.support:design:$rootProject.designVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.appcompatVersion"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
+    implementation "com.github.florent37:shapeofview:$rootProject.shapeOfViewVersion"
+    implementation "com.miguelcatalan:materialsearchview:$rootProject.materialSearchViewVersion"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.loggingInterceptorVersion"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.rxJavaAdapterVersion"
+
+    // RxJava 2
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxKotlinVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
+
+    // KotterKnife
+    implementation "com.jakewharton:kotterknife:$rootProject.kotterKnifeVersion"
+
+    // Lifecycle components
+    implementation "android.arch.lifecycle:extensions:$rootProject.lifecycleVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.lifecycleVersion"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    // Tests
+    testImplementation "junit:junit:$rootProject.junitVersion"
+}

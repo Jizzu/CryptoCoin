@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">CryptoCoin</string>
+    <string name="priceUsd">%1$s$</string>
+    <string name="priceBtc">%1$s BTC</string>
+    <string name="supply">%1$s %2$s</string>
+    <string name="percentChangeMinus">%.2f%%</string>
+    <string name="percentChangePlus">+%.2f%%</string>
+    
+    <string name="detailPriceUSD">"Цена USD : "</string>
+    <string name="detailPriceBTC">"Цена BTC : "</string>
+    <string name="detailVolume">"Объем USD (24ч) : "</string>
+    <string name="detailMarketCap">"Капитализация Рынка : "</string>
+    <string name="detailAvailableSupply">"Доступное Предл-е : "</string>
+    <string name="detailTotalSupply">"Общее Предл-е : "</string>
+    <string name="detailChangeHour">"Изменение (1ч) : "</string>
+    <string name="detailChangeDay">"Изменение (24ч) : "</string>
+    <string name="detailChangeWeek">"Изменение (7д) : "</string>
+    <string name="detailSources">Источник</string>
+
+    <string name="aboutPage">О приложении</string>
+    <string name="aboutVersionTitle">Версия: 1.0</string>
+    <string name="aboutVersionDescription">CryptoCoin — весь рынок криптовалют в твоём кармане!</string>
+    <string name="aboutFeedbackTitle">Написать автору</string>
+    <string name="aboutFeedbackDescription">Предлагайте свои идеи и сообщайте о багах</string>
+    <string name="aboutRateTitle">Оценить приложение</string>
+    <string name="aboutRateDescription">Оцените это приложение в Google Play</string>
+    <string name="aboutGitHubTitle">Страница проекта на GitHub</string>
+    <string name="aboutGitHubDescription">Посетите страницу проекта на GitHub, чтобы ознакомиться с исходным кодом приложения</string>
+    <string name="aboutLibrariesTitle">Используемые библиотеки</string>
+
+    <string name="feedbackTitle">CryptoCoin — Отзыв</string>
+    <string name="feedbackDeviceInfo">"Информация о моём устройстве: "</string>
+    <string name="feedbackAppVersion">"Версия приложения: "</string>
+    <string name="feedback">"Отзыв: "</string>
+
+    <string name="retrofitTitle">square / retrofit</string>
+    <string name="retrofitDescription">Type-safe HTTP client for Android and Java by Square, Inc.</string>
+    <string name="kotterKnifeTitle">JakeWharton / kotterknife</string>
+    <string name="kotterKnifeDescription">View injection library for Android.</string>
+    <string name="shapeOfViewTitle">florent37 / ShapeOfView</string>
+    <string name="shapeOfViewDescription">Give a custom shape to any android view, Material Design 2 ready</string>
+    <string name="materialSearchViewTitle">MiguelCatalan / MaterialSearchView</string>
+    <string name="materialSearchViewDescription">Cute library to implement SearchView in a Material Design Approach</string>
+
+    <string name="menuSort">Сортировка</string>
+    <string name="menuAbout">О приложении</string>
+
+    <string name="searchTitle">Поиск</string>
+    <string name="menuTitle">Меню</string>
+
+    <string name="itemHour">"1ч: "</string>
+    <string name="itemDay">"24ч: "</string>
+    <string name="itemWeek">"7д: "</string>
+
+    <string name="internetError">Ошибка загрузки данных! \nПроверьте ваше соединение с \nинтернетом.</string>
+    <string name="sortToast">Сортировка по: %1$s</string>
+    <string name="noEmailAppsError">Приложения для электронной почты не установлены!</string>
+
+    <string name="dialogTitle">Сортировать по:</string>
+    <string-array name="sortBy">
+        <item>Убыванию цены</item>
+        <item>Возрастанию цены</item>
+        <item>Убыванию изменений за 1ч</item>
+        <item>Возрастанию изменений за 1ч</item>
+        <item>Убыванию изменений за 24ч</item>
+        <item>Возрастанию изменений за 24ч</item>
+        <item>Убыванию изменений за 7д</item>
+        <item>Возрастанию изменений за 7д</item>
+        <item>Убыванию капитализации рынка</item>
+        <item>Возрастанию капитализации рынка</item>
+    </string-array>
+</resources>

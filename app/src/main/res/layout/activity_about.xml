@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@drawable/gradient" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/darkBackground"
+            android:orientation="vertical"
+            tools:context=".screens.activity.AboutActivity">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardUseCompatPadding="true"
+                card_view:cardBackgroundColor="@color/lightBackground"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="3dp"
+                card_view:contentPadding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/web_hi_res_512"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/aboutVersionTitle"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="@string/aboutVersionDescription"
+                        android:textColor="@color/grey" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardUseCompatPadding="true"
+                card_view:cardBackgroundColor="@color/lightBackground"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="3dp"
+                card_view:contentPadding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/aboutFeedbackTitle"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="@string/aboutFeedbackDescription"
+                        android:textColor="@color/grey" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@id/cvFeedback"
+                card_view:cardBackgroundColor="@color/lightBackground"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="3dp"
+                card_view:contentPadding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/aboutRateTitle"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="@string/aboutRateDescription"
+                        android:textColor="@color/grey" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvGitHub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@id/cvRate"
+                card_view:cardBackgroundColor="@color/lightBackground"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="3dp"
+                card_view:contentPadding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/aboutGitHubTitle"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="@string/aboutGitHubDescription"
+                        android:textColor="@color/grey" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvLibraries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="5dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@id/cvGitHub"
+                card_view:cardBackgroundColor="@color/lightBackground"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/aboutLibrariesTitle"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:divider="@drawable/divider_horizontal"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <LinearLayout
+                        android:id="@+id/llRetrofit"
+                        style="@style/AboutLibraryStyle"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
+
+                        <TextView
+                            style="@style/AboutTitleTextStyle"
+                            android:text="@string/retrofitTitle" />
+
+                        <TextView
+                            style="@style/AboutSubtitleTextStyle"
+                            android:text="@string/retrofitDescription" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llKotterKnife"
+                        style="@style/AboutLibraryStyle"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
+
+                        <TextView
+                            style="@style/AboutTitleTextStyle"
+                            android:text="@string/kotterKnifeTitle" />
+
+                        <TextView
+                            style="@style/AboutSubtitleTextStyle"
+                            android:text="@string/kotterKnifeDescription" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llShapeOfView"
+                        style="@style/AboutLibraryStyle">
+
+                        <TextView
+                            style="@style/AboutTitleTextStyle"
+                            android:text="@string/shapeOfViewTitle" />
+
+                        <TextView
+                            style="@style/AboutSubtitleTextStyle"
+                            android:text="@string/shapeOfViewDescription" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llMaterialSearchView"
+                        style="@style/AboutLibraryStyle">
+
+                        <TextView
+                            style="@style/AboutTitleTextStyle"
+                            android:text="@string/materialSearchViewTitle" />
+
+                        <TextView
+                            style="@style/AboutSubtitleTextStyle"
+                            android:text="@string/materialSearchViewDescription" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>
