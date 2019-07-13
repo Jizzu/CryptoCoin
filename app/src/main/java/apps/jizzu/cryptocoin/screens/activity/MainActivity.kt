@@ -1,6 +1,5 @@
 package apps.jizzu.cryptocoin.screens.activity
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.constraint.Group
@@ -23,6 +22,8 @@ import apps.jizzu.cryptocoin.screens.vm.*
 import apps.jizzu.cryptocoin.utils.*
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotterknife.bindView
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     private val mRecyclerView: RecyclerView by bindView(R.id.rvCoinsList)
@@ -32,10 +33,11 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     private val mToolbar: Toolbar by bindView(R.id.toolbar)
     private val mSearchView: MaterialSearchView by bindView(R.id.searchView)
 
-    private val mAdapter = CoinsAdapter()
-    private val mPreferenceHelper = PreferenceHelper.getInstance()
+    private val mAdapter: CoinsAdapter by inject()
+    private val mPreferenceHelper: PreferenceHelper by inject()
+    private val mViewModel: CoinsViewModel by viewModel()
 
-    private lateinit var mViewModel: CoinsViewModel
+    private var mIsSearchViewShown = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +45,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         initUI()
         initListeners()
 
-        mViewModel = createViewModel()
-        with(mViewModel) {
-            mLiveData.observeNonNull(this@MainActivity, ::updateViewState)
-            loadCoinsList()
-        }
+        mViewModel.mLiveData.observeNonNull(this@MainActivity, ::updateViewState)
     }
 
     private fun initUI() {
@@ -74,11 +72,23 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun initListeners() {
+        mSearchView.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
+            override fun onSearchViewClosed() {
+                mIsSearchViewShown = false
+            }
+
+            override fun onSearchViewShown() {
+                mIsSearchViewShown = true
+            }
+        })
+
         mSearchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String) = true
 
             override fun onQueryTextChange(newText: String): Boolean {
-                mViewModel.searchData(newText)
+                if (mIsSearchViewShown) {
+                    mViewModel.searchData(newText)
+                }
                 return false
             }
         })
@@ -90,6 +100,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun updateViewState(state: ViewState) {
         when (state) {
+            is ViewStateAppStart -> showProgressBar()
             is ViewStateSearch -> showSearchResults(state.coins)
             is ViewStateSort -> showContent(state.coins)
             is ViewStateError -> showError()
@@ -144,9 +155,9 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun hideLoadingError() = mGroupNoInternet.gone()
 
-    private fun hideProgressBar() = mProgressBar.invisible()
+    private fun showProgressBar() = mProgressBar.visible()
 
-    private fun createViewModel() = ViewModelProviders.of(this).get(CoinsViewModel::class.java)
+    private fun hideProgressBar() = mProgressBar.invisible()
 
     override fun onRefresh() = mViewModel.loadCoinsList()
 
@@ -167,7 +178,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
                 AlertDialog.Builder(this, R.style.AlertDialogStyle).apply {
                     setTitle(getString(R.string.dialogTitle))
                     setSingleChoiceItems(listItems, selectedItemPosition) { dialogInterface, i ->
-                        mViewModel.sortData(i)
+                        mViewModel.sortData(i, true)
                         selectedItemPosition = i
                         mPreferenceHelper.putInt(PreferenceHelper.SORT_KEY, i)
                         toast(getString(R.string.sortToast, listItems[i]))

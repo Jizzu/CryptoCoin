@@ -45,6 +45,10 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxKotlinVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
 
+    // Koin
+    implementation "org.koin:koin-android:$rootProject.koinVersion"
+    implementation "org.koin:koin-android-viewmodel:$rootProject.koinVersion"
+
     // KotterKnife
     implementation "com.jakewharton:kotterknife:$rootProject.kotterKnifeVersion"
 

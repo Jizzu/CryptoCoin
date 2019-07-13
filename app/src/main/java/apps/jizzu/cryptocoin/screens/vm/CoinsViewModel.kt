@@ -3,24 +3,32 @@ package apps.jizzu.cryptocoin.screens.vm
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import apps.jizzu.cryptocoin.data.Coin
-import apps.jizzu.cryptocoin.network.ApiClient
-import apps.jizzu.cryptocoin.utils.*
+import apps.jizzu.cryptocoin.network.Api
+import apps.jizzu.cryptocoin.utils.PreferenceHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class CoinsViewModel : ViewModel() {
+class CoinsViewModel(private val client: Api,
+                     private val preferenceHelper: PreferenceHelper) : ViewModel() {
     private var mData = arrayListOf<Coin>()
     val mLiveData = MutableLiveData<ViewState>()
+        get() {
+            if (field.value == null) {
+                field.value = ViewStateAppStart
+                loadCoinsList()
+            }
+            return field
+        }
 
     fun loadCoinsList() {
-        ApiClient.client.getData()
+        client.getData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onSuccess = {
                             mData = it
-                            sortData(PreferenceHelper.getInstance().getInt(PreferenceHelper.SORT_KEY))
+                            sortData(preferenceHelper.getInt(PreferenceHelper.SORT_KEY), false)
                             mLiveData.value = ViewStateSuccess(mData)
                         },
                         onError = { mLiveData.value = ViewStateError }
@@ -41,7 +49,7 @@ class CoinsViewModel : ViewModel() {
         mLiveData.value = ViewStateSearch(searchResults)
     }
 
-    fun sortData(key: Int) {
+    fun sortData(key: Int, isNeedToShowData: Boolean) {
         when (key) {
             0 -> mData.sortWith(compareByDescending { it.priceUSD })
             1 -> mData.sortWith(compareBy { it.priceUSD })
@@ -54,6 +62,8 @@ class CoinsViewModel : ViewModel() {
             8 -> mData.sortWith(compareByDescending { it.marketCapUSD })
             9 -> mData.sortWith(compareBy { it.marketCapUSD })
         }
-        mLiveData.value = ViewStateSort(mData)
+        if (isNeedToShowData) {
+            mLiveData.value = ViewStateSort(mData)
+        }
     }
 }

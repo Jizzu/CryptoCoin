@@ -4,6 +4,8 @@ import apps.jizzu.cryptocoin.data.Coin
 
 sealed class ViewState
 
+object ViewStateAppStart : ViewState()
+
 object ViewStateError : ViewState()
 
 class ViewStateSuccess(val coins: ArrayList<Coin>) : ViewState()
